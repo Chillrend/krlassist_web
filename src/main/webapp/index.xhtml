@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>KRL | ADMIN</title>
+
+    <h:outputStylesheet name="vendor/bootstrap/css/bootstrap.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&amp;display=swap&amp;subset=latin-ext" rel="stylesheet" />
+    <h:outputStylesheet name="vendor/linearicons/style.css" />
+    <h:outputStylesheet name="vendor/chartist/css/chartist-custom.css" />
+
+    <h:outputStylesheet name="css/main.css" />
+    <h:outputStylesheet name="css/override.css" />
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet" />
+
+    <!-- ICONS -->
+    <link rel="apple-touch-icon" sizes="76x76" href="resources/img/apple-icon.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="resources/img/favicon.png" />
+    <script>
+        //initializing variables from JSF session
+        var display_name = '#{sessionInitializer.display_name}';
+        var email = '#{sessionInitializer.email}';
+        var role = '#{sessionInitializer.role}';
+        var stat_mgd = '#{sessionInitializer.stat_mgd}';
+    </script>
+</h:head>
+<h:body styleClass="layout-fullwidth">
+
+    <div id="wrapper">
+        <ui:insert name="header">
+            <ui:include src="template/components/header.xhtml"/>
+        </ui:insert>
+        <ui:insert name="sidebar">
+            <ui:include src="template/components/sidebar.xhtml"/>
+        </ui:insert>
+        <div class="main">
+            <div class="main-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-headline" id="gangguan">
+                                <div class="panel-heading">
+                                    <div class="panel-title">Halo, #{sessionInitializer.display_name}</div>
+                                    <div class="panel-subtitle">Anda mengelola stasiun #{sessionInitializer.stat_mgd}. Berikut situasi jalur yang dilayani stasiun #{sessionInitializer.stat_mgd}</div>
+                                </div>
+                                <div class="panel-body" id="gangguan_panel">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Informasi KRL <span id="refresh-btn"><i class="fas fa-sync fa-fw"></i></span></h3>
+                            <h5>Data akan diupdate otomatis setiap 2 menit, klik icon diatas untuk update sekarang</h5>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="panel panel-headline" id="pid">
+                                <div class="panel-heading">
+                                    <div class="panel-subtitle">Informasi KRL terdekat melewati stasiun #{sessionInitializer.stat_mgd}</div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-md-6">
+                                        <div class="metrac">
+                                            <p>
+                                                <span class="number" id="pid-1-tujuan-akhir">BELUM TERSEDIA</span>
+                                                <span class="title" id="pid-1-status"></span>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="metrac">
+                                            <p>
+                                                <span class="number" id="pid-2-tujuan-akhir">BELUM TERSEDIA</span>
+                                                <span class="title" id="pid-2-status"></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Detail Informasi KRL</h3>
+                                    <div class="right">
+                                        <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+                                        <button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+                                    </div>
+                                </div>
+                                <div class="panel-body no-padding">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>No. KA</th>
+                                            <th>Relasi</th>
+                                            <th>SF</th>
+                                            <th>Status</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="departure-board">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--SCRIPTS-->
+
+    <h:outputScript name="vendor/jquery/jquery.min.js" />
+    <h:outputScript name="vendor/bootstrap/js/bootstrap.min.js" />
+    <h:outputScript name="vendor/jquery-slimscroll/jquery.slimscroll.min.js" />
+    <h:outputScript name="vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js" />
+    <h:outputScript name="vendor/chartist/js/chartist.min.js" />
+    <h:outputScript name="scripts/klorofil-common.js" />
+
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-firestore.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDqx68SCj15nrCxO-w4Ur_Ex-eOm006mSw",
+            authDomain: "proj1engine.firebaseapp.com",
+            databaseURL: "https://proj1engine.firebaseio.com",
+            projectId: "proj1engine",
+            storageBucket: "proj1engine.appspot.com",
+            messagingSenderId: "772605542698",
+            appId: "1:772605542698:web:fb8bd1171301c301"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        var db = firebase.firestore();
+        
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+        
+    </script>
+    <h:outputScript name="scripts/index.js" />
+</h:body>
+</html>

@@ -1,0 +1,137 @@
+.google-button {
+    height: 40px;
+    width: 100%;
+    border-width: 0;
+    background: white;
+    color: #737373;
+    border-radius: 5px;
+    white-space: nowrap;
+    box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+    transition-property: background-color, box-shadow;
+    transition-duration: 150ms;
+    transition-timing-function: ease-in-out;
+    padding: 0;
+}
+.google-button:focus, .google-button:hover {
+    box-shadow: 1px 4px 5px 1px rgba(0, 0, 0, 0.1);
+}
+.google-button:active {
+    background-color: #e5e5e5;
+    box-shadow: none;
+    transition-duration: 10ms;
+}
+.google-button__icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 12px 0;
+    width: 18px;
+    height: 18px;
+    box-sizing: border-box;
+}
+.google-button__icon--plus {
+    width: 27px;
+}
+.google-button__text {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 24px;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Roboto', arial, sans-serif;
+}
+
+span.alert-small{
+    display: block;
+}
+
+.alert-small{
+    margin: 10px;
+    padding: 5px;
+    font-size: 12px;
+}
+
+.metric p {
+    text-align: left;
+    margin-left: 60px;
+    color: white;
+}
+
+.metrac{
+    text-align: center;
+    padding: 20px;
+    background: #000;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.metrac .number{
+    display: block;
+    font-size: 16px;
+}
+
+.metrac .title{
+    font-size: 12px;
+}
+
+.metrac p{
+    color: red;
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 0;
+}
+
+#refresh-btn{
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.pause-anim{
+    animation-play-state: paused;
+}
+.strong{
+    font-weight: bold;
+}
+
+/* COLORS */
+
+.color-danger{
+    background-color: #FF5252 !important;
+}
+.color-warning{
+    background-color: #FFAB00 !important;
+}
+.color-normal {
+    background-color: #00BFA5 !important;
+}
+
+.red-line{
+    background-color: #F44336 !important;
+}
+.loop-line{
+    background-color: #FBC02D !important;
+}
+.bekasi-line{
+    background-color: #2196F3 !important;
+}
+.tanggerang-line{
+    background-color: #4CAF50 !important;
+}
+.rangkasbitung-line{
+    background-color: #8D6E63 !important;
+}
+
+.red-line-font{
+    color: #F44336 !important;
+}
+.loop-line-font{
+    color: #FBC02D !important;
+}
+.bekasi-line-font{
+    color: #2196F3 !important;
+}
+.tanggerang-line-font{
+    color: #4CAF50 !important;
+}
+.rangkasbitung-line-font{
+    color: #8D6E63 !important;
+}
+/* END COLOR */
