@@ -104,5 +104,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-all:1.10.19" level="project" />
     <orderEntry type="library" name="firebase-app" level="application" />
     <orderEntry type="library" name="firebase-firestore" level="application" />
+    <orderEntry type="library" name="tagify" level="application" />
   </component>
 </module>

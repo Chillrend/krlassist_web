@@ -20,6 +20,8 @@
 
     <h:outputStylesheet name="css/main.css" />
     <h:outputStylesheet name="css/override.css" />
+    <h:outputStylesheet name="css/tagify.min.css" />
+
 
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet" />
 
@@ -43,87 +45,23 @@
         <ui:insert name="sidebar">
             <ui:include src="template/components/sidebar.xhtml"/>
         </ui:insert>
-        <div class="main">
-            <div class="main-content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
-                            <div class="search-box">
-                                <input type="text" name="" id="krl-search-box" class="search-text" placeholder="Cari No. KA ..."/>
-                                <a class="search-btn">
-                                    <i class="fas fa-search"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-8 col-md-offset-2">
-                            <h3 class="text-center">Ketik Nomor KA di atas untuk mencari data Realtime KA</h3>
-                        </div>
-                        <div class="col-md-8 col-md-offset-2" id="realtime-div">
+        <div class="main" id="map">
 
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <!--SCRIPTS-->
-
-    <div id="update_modal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#215;</span></button>
-                    <h4 class="modal-title" id="modal-title">Edit Posisi </h4>
-                </div>
-                <div class="modal-body">
-                    <label for="no-ka-form">Nomor KA</label>
-                    <div class="input-group">
-                        <input id="no-ka-form" disabled="disabled" type="text" class="form-control" placeholder="No. KA" aria-describedby="basic-addon1" />
-                    </div>
-
-                    <label for="status-form">Status</label>
-                    <div class="input-group">
-                        <select id="status-form" class="form-control" aria-describedby="Status Keberangkatan" >
-                            <option value="Ber">Berangkat</option>
-                            <option value="Di">Di</option>
-                            <option value="NON OPERATIONAL">Tidak Beroperasi</option>
-                        </select>
-                    </div>
-
-                    <label for="status-stasiun-form">Posisi Stasiun</label>
-                    <div class="input-group">
-                        <select id="status-stasiun-form" class="form-control" aria-describedby="Status Keberangkatan">
-
-                        </select>
-                    </div>
-
-                    <label for="sf-form">Stamformasi Rangkaian</label>
-                    <div class="input-group">
-                        <select id="sf-form" class="form-control" aria-describedby="Status Keberangkatan" >
-                            <option value="8">8 Kereta</option>
-                            <option value="10">10 Kereta</option>
-                            <option value="12">12 Kereta</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                    <button id="save-btn" type="button" class="btn btn-primary">Simpan Perubahan</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
     <h:outputScript name="vendor/jquery/jquery.min.js" />
     <h:outputScript name="vendor/bootstrap/js/bootstrap.min.js" />
     <h:outputScript name="vendor/jquery-slimscroll/jquery.slimscroll.min.js" />
     <h:outputScript name="vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js" />
     <h:outputScript name="vendor/chartist/js/chartist.min.js" />
     <h:outputScript name="scripts/klorofil-common.js" />
+    <h:outputScript name="scripts/klorofil-common.js" />
 
     <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify@2.22.1/dist/tagify.min.js"></script>
 
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
@@ -151,6 +89,10 @@
         });
 
     </script>
-    <h:outputScript name="scripts/realtime.js" />
+
+    <script async="async" defer="defer" type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOLOpJqaK_qRis79Ys1pX2aWjlPfJrgcU&#38;callback=initMap"></script>
+
+    <h:outputScript name="scripts/routemap.js" />
 </h:body>
 </html>

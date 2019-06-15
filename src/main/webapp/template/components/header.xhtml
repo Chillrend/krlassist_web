@@ -50,10 +50,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="#{sessionInitializer.pp_link}" class="img-circle" alt="Avatar" /> <span>#{sessionInitializer.display_name}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-                            <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
-                            <li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
-                            <li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+                            <h:form>
+                            <li><h:commandLink action="#{userDefault.goLogout}"><i class="lnr lnr-exit"></i> <span>Logout</span></h:commandLink></li>
+                            </h:form>
                         </ul>
                     </li>
                 </ul>

@@ -1,5 +1,8 @@
 package krlweb.filters;
 
+import krlweb.utils.SessionObject;
+import krlweb.utils.SessionUtils;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -26,20 +29,21 @@ public class AuthFilter implements Filter {
             HttpServletRequest reqt = (HttpServletRequest) req;
             HttpServletResponse resp = (HttpServletResponse) res;
 
-            HttpSession session = reqt.getSession(false);
+            HttpSession session = ((HttpServletRequest) req).getSession(true);
             String request_uri = reqt.getRequestURI();
 
-            if(request_uri.contains("javax.faces.resource")){
+            if(request_uri.contains("javax.faces.resource") || session.getAttribute("session") != null){
                 chain.doFilter(req,res);
-            }else {
+            }else{
                 reqt.getRequestDispatcher("/faces/login.xhtml").forward(req,res);
 //                resp.sendRedirect(reqt.getContextPath() + "/faces/login.xhtml");
 //                reqt.getSession().getServletContext().getRequestDispatcher("/faces/login.xhtml").forward(req,res);
             }
-
         }catch(Exception e){
+
             e.printStackTrace();
             System.out.print(e.getMessage());
+
         }
 
     }

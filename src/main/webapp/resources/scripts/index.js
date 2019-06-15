@@ -6,7 +6,7 @@ Object.size = function (obj) {
     return size;
 };
 var stasiun_details;
-var gangguan_details = new Object();
+var gangguan_details = {};
 var stat_collection = db.collection("stasiun");
 var gangguan_col = db.collection("gangguan");
 var stasiun_info = stat_collection.doc(stat_mgd);
@@ -30,12 +30,13 @@ $(document).ready(function () {
             return Promise.all(promise);
 
         }).then(gangguan => {
-            var lines = [];
             var promise = gangguan.map(g => {
+
                 for (var key in g){
                     if(g.hasOwnProperty(key)){
+                        console.log(g);
                         let line_affected = g[key].line_affected;
-                        for(i = 0; i < line_affected.length ; i++) {
+                        for(let i = 0; i < line_affected.length ; i++) {
                             return getLineName(line_affected[i]).then(line =>{
                                 return pushLineName(gangguan,line);
                             })
@@ -62,7 +63,7 @@ function getNearestTrain(){
         var krl_data = {};
         krls.map(krl =>{
 
-            real_krl = krl.data();
+            let real_krl = krl.data();
 
             krl_data[krl.id] = JSON.parse(JSON.stringify(real_krl));
 
@@ -333,6 +334,8 @@ function renderGangguan(objects){
 
     });
 }
+
+
 
 function noop(){
 

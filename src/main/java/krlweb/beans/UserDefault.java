@@ -226,4 +226,12 @@ public class UserDefault implements Serializable {
 
 
     }
+
+    public String goLogout(){
+        HttpSession session = SessionUtils.getSession();
+
+        session.invalidate();
+
+        return "login.xhtml";
+    }
 }

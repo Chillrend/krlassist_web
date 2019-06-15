@@ -20,6 +20,8 @@
 
     <h:outputStylesheet name="css/main.css" />
     <h:outputStylesheet name="css/override.css" />
+    <h:outputStylesheet name="css/tagify.min.css" />
+
 
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet" />
 
@@ -48,17 +50,10 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
-                            <div class="search-box">
-                                <input type="text" name="" id="krl-search-box" class="search-text" placeholder="Cari No. KA ..."/>
-                                <a class="search-btn">
-                                    <i class="fas fa-search"></i>
-                                </a>
-                            </div>
+                            <h3 class="text-center">Status Halang Rintang / Gangguan Jalur KRL</h3>
                         </div>
-                        <div class="col-md-8 col-md-offset-2">
-                            <h3 class="text-center">Ketik Nomor KA di atas untuk mencari data Realtime KA</h3>
-                        </div>
-                        <div class="col-md-8 col-md-offset-2" id="realtime-div">
+
+                        <div class="col-md-8 col-md-offset-2" id="gangguan-div">
 
                         </div>
                     </div>
@@ -73,37 +68,42 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#215;</span></button>
-                    <h4 class="modal-title" id="modal-title">Edit Posisi </h4>
+                    <h4 class="modal-title" id="modal-title">Ubah status halang rintang</h4>
                 </div>
                 <div class="modal-body">
-                    <label for="no-ka-form">Nomor KA</label>
                     <div class="input-group">
-                        <input id="no-ka-form" disabled="disabled" type="text" class="form-control" placeholder="No. KA" aria-describedby="basic-addon1" />
+                        <input id="gangguan-id-form" type="hidden" class="form-control" placeholder="No. KA" aria-describedby="basic-addon1" />
                     </div>
 
-                    <label for="status-form">Status</label>
-                    <div class="input-group">
-                        <select id="status-form" class="form-control" aria-describedby="Status Keberangkatan" >
-                            <option value="Ber">Berangkat</option>
-                            <option value="Di">Di</option>
-                            <option value="NON OPERATIONAL">Tidak Beroperasi</option>
-                        </select>
+                    <label for="line-affected-form">Jalur Terpengaruh</label>
+                    <div class="">
+                        <input class="" name="tags" id="line-affected-form" />
                     </div>
 
-                    <label for="status-stasiun-form">Posisi Stasiun</label>
+                    <label for="stasiun-form">Stasiun Terdekat</label>
                     <div class="input-group">
-                        <select id="status-stasiun-form" class="form-control" aria-describedby="Status Keberangkatan">
+                        <select id="stasiun-form" class="form-control" aria-describedby="Status Keberangkatan">
 
                         </select>
                     </div>
 
-                    <label for="sf-form">Stamformasi Rangkaian</label>
+                    <label for="severity-form">Tingkat Keparahan</label>
                     <div class="input-group">
-                        <select id="sf-form" class="form-control" aria-describedby="Status Keberangkatan" >
-                            <option value="8">8 Kereta</option>
-                            <option value="10">10 Kereta</option>
-                            <option value="12">12 Kereta</option>
+                        <select id="severity-form" class="form-control" aria-describedby="Status Keberangkatan" >
+                            <option value="NORMAL">Normal (Tidak ada Gangguan)</option>
+                            <option value="MEDIUM">Sedang (KA Masih bisa melewati Jalur dengan taspat tertentu)</option>
+                            <option value="SEVERE">Parah (Lalu Lintas KA Berhenti)</option>
                         </select>
+                    </div>
+
+                    <label for="short-desc-form">Deskripsi Singkat Gangguan</label>
+                    <div class="input-group">
+                        <input style="width: 240px;" id="short-desc-form" type="text" class="form-control" placeholder="2-3 Kata tentang gangguan di jalur" aria-describedby="basic-addon1" />
+                    </div>
+
+                    <label for="long-desc-form">Deskripsi Panjang Gangguan</label>
+                    <div class="input-group">
+                        <textarea id="long-desc-form" class="form-control" placeholder="Deskripsi keadaan di jalur" aria-describedby="basic-addon1" />
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -124,6 +124,7 @@
     <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify@2.22.1/dist/tagify.min.js"></script>
 
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
@@ -151,6 +152,6 @@
         });
 
     </script>
-    <h:outputScript name="scripts/realtime.js" />
+    <h:outputScript name="scripts/halangrintang.js" />
 </h:body>
 </html>
