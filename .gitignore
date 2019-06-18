@@ -1,5 +1,4 @@
 target/
 src/main/webapp/WEB-INF/serviceAccount.json
 src/main/webapp/routemap.xhtml
-src/main/webapp/template/
 .idea/
