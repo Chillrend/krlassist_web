@@ -32,9 +32,10 @@ public class AuthFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession(false);
         String loginURL = request.getContextPath() + "/faces/login.xhtml";
-
+        String user = request.getContextPath() + "/faces/clientarea.xhtml";  
         boolean loggedIn = (session != null) && (session.getAttribute("session") != null);
         boolean loginRequest = request.getRequestURI().equals(loginURL);
+        boolean userRequest = request.getRequestURI().equals(user);
         boolean resourceRequest = request.getRequestURI().contains("javax.faces.resource");
         boolean ajaxRequest = "partial/ajax".equals(request.getHeader("Faces-Request"));
 
@@ -51,6 +52,9 @@ public class AuthFilter implements Filter {
             response.setContentType("text/xml");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().printf(AJAX_REDIRECT_XML, loginURL); // So, return special XML response instructing JSF ajax to send a redirect.
+        }
+        else if (userRequest){
+              chain.doFilter(request, response);
         }
         else {
             response.sendRedirect(loginURL); // So, just perform standard synchronous redirect.
