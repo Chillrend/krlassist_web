@@ -1,4 +1,5 @@
 var krl_ref = db.collection('krl');
+
 $(document).ready(function () {
     var stasiun_ref = db.collection('stasiun');
 

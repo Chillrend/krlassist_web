@@ -52,6 +52,10 @@ $(document).ready(function () {
             console.log(error);
         });
 
+        $('#refresh-btn').click(function(){
+                getNearestTrain();
+        });
+
 });
 
 function getNearestTrain(){
